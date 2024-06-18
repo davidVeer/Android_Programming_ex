@@ -1,0 +1,12 @@
+FATAL EXCEPTION: MQTT Rec: AndroidProgramming-B2:Software-44153818-549a-4084-b3fe-47435925b7d6
+                                                                                                    Process: com.example.oldphoneapp, PID: 12686
+                                                                                                    java.lang.IllegalArgumentException: com.example.oldphoneapp: Targeting S+ (version 31 and above) requires that one of FLAG_IMMUTABLE or FLAG_MUTABLE be specified when creating a PendingIntent.
+                                                                                                    Strongly consider using FLAG_IMMUTABLE, only use FLAG_MUTABLE if some functionality depends on the PendingIntent being mutable, e.g. if it needs to be used with inline replies or bubbles.
+                                                                                                    	at android.app.PendingIntent.checkFlags(PendingIntent.java:408)
+                                                                                                    	at android.app.PendingIntent.getBroadcastAsUser(PendingIntent.java:688)
+                                                                                                    	at android.app.PendingIntent.getBroadcast(PendingIntent.java:675)
+                                                                                                    	at org.eclipse.paho.android.service.AlarmPingSender.start(AlarmPingSender.java:76)
+                                                                                                    	at org.eclipse.paho.client.mqttv3.internal.ClientState.connected(ClientState.java:1214)
+                                                                                                    	at org.eclipse.paho.client.mqttv3.internal.ClientState.notifyReceivedAck(ClientState.java:1050)
+                                                                                                    	at org.eclipse.paho.client.mqttv3.internal.CommsReceiver.run(CommsReceiver.java:151)
+                                                                                                    	at java.lang.Thread.run(Thread.java:1012)
