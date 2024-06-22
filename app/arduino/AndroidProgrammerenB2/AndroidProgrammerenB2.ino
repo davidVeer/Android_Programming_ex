@@ -38,10 +38,10 @@ const char* LED_YELLOW_TOPIC = "Hardware/LED/Yellow";
 const char* LED_GREEN_TOPIC = "Hardware/LED/Green";
 const char* LED_BLUE_TOPIC = "Hardware/LED/Blue";
 
-const char* SOFTWARE_INPUT_RED = "Software/button/1";
-const char* SOFTWARE_INPUT_YELLOW = "Software/button/2";
-const char* SOFTWARE_INPUT_GREEN = "Software/button/3";
-const char* SOFTWARE_INPUT_BLUE = "Software/button/4";
+const char* SOFTWARE_RED_TOPIC = "Software/Button/Red";
+const char* SOFTWARE_YELLOW_TOPIC = "Software/Button/Yellow";
+const char* SOFTWARE_GREEN_TOPIC = "Software/Button/Green";
+const char* SOFTWARE_BLUE_TOPIC = "Software/Button/Blue";
 
 void callback(char* topic, byte* payload, unsigned int length);
 
@@ -62,10 +62,10 @@ const int YELLOW_LED_PIN = 22;
 const int GREEN_LED_PIN = 32;
 const int BLUE_LED_PIN = 33;
 
-const int BUTTON_1_PIN = 5;
-const int BUTTON_2_PIN = 18;
-const int BUTTON_3_PIN = 19;
-const int BUTTON_4_PIN = 21;
+const int BUTTON_1_PIN = 21;
+const int BUTTON_2_PIN = 19;
+const int BUTTON_3_PIN = 5;
+const int BUTTON_4_PIN = 18;
 
 //initialising boolean values
 bool redLedOn;
@@ -111,6 +111,11 @@ void reconnect(){
 
     if(mqttClient.connect(MQTT_CLIENT_NAME,MQTT_USERNAME, MQTT_PASSWORD)){
       Serial.println("(Re)Connected!");
+      mqttClient.subscribe(SOFTWARE_RED_TOPIC);
+      mqttClient.subscribe(SOFTWARE_YELLOW_TOPIC);
+      mqttClient.subscribe(SOFTWARE_GREEN_TOPIC);
+      mqttClient.subscribe(SOFTWARE_RED_TOPIC);
+      
     }else{
       Serial.print("failed, rc=");
       Serial.println(mqttClient.state());
@@ -160,31 +165,21 @@ void setup() {
 
   mqttClient.setServer(MQTT_URL, MQTT_PORT);
   mqttClient.setCallback(callback);
-  
 }
 
 void callback(char* topic, byte* payload, unsigned int length){
   Serial.print("message recieved from : ");
   Serial.println(topic);
+  mqttClient.publish("Hardware/TEST", "It works!!!");
 
-  String message = "";
+  char* message = "";
   for(int i = 0 ; i < length ; i++){
     message += (char)payload[i];
   }
 
-  if (topic == SOFTWARE_INPUT_RED){
-    switchLights(RED);
-  }
-  if (topic == SOFTWARE_INPUT_YELLOW){
-    switchLights(YELLOW);
-  }
-  if (topic == SOFTWARE_INPUT_GREEN){
-    switchLights(GREEN);
-  }
-  if (topic == SOFTWARE_INPUT_BLUE){
-    switchLights(BLUE);
-  }
+  switchLights(RED);
 
+  publishData();
 }
 
 void publishData(){
@@ -278,11 +273,8 @@ void checkAndHandleButton4(){
 void loop() {
   if (!mqttClient.connected()){
     reconnect();
-    mqttClient.subscribe(SOFTWARE_INPUT_RED);
-      mqttClient.subscribe(SOFTWARE_INPUT_YELLOW);
-      mqttClient.subscribe(SOFTWARE_INPUT_GREEN);
-      mqttClient.subscribe(SOFTWARE_INPUT_BLUE);
   }
+  mqttClient.loop();
 
   readButtons();
 

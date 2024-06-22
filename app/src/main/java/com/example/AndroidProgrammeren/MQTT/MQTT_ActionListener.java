@@ -1,10 +1,10 @@
-package com.example.oldphoneapp.MQTT;
+package com.example.AndroidProgrammeren.MQTT;
 
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.oldphoneapp.MainActivity;
+import com.example.AndroidProgrammeren.MainActivity;
 
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttToken;

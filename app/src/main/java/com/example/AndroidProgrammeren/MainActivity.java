@@ -1,4 +1,4 @@
-package com.example.oldphoneapp;
+package com.example.AndroidProgrammeren;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -8,13 +8,12 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.oldphoneapp.MQTT.MQTT_Connections;
-import com.example.oldphoneapp.MQTT.Topic;
+import com.example.AndroidProgrammeren.MQTT.MQTT_Connections;
+import com.example.AndroidProgrammeren.MQTT.Topic;
 import com.example.oldphoneapp.databinding.ActivityMainBinding;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONArray;
 
 import java.util.Objects;
 
@@ -22,6 +21,11 @@ public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
     private MQTT_Connections mqttConnections;
+    TextView redText;
+    TextView yellowText;
+    TextView greenText;
+    TextView blueText;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
         initialiseGreenButton();
         initialiseBlueButton();
 
+        redText = findViewById(R.id.redLedInformation);
+        yellowText = findViewById(R.id.yellowLedInformation);
+        greenText = findViewById(R.id.greenLedInformation);
+        blueText = findViewById(R.id.blueLedInformation);
 
         mqttConnections = new MQTT_Connections(getApplicationContext(), this);
         mqttConnections.connectToBroker();
@@ -75,36 +83,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void updateTextBox(String message) {
-        TextView redText = findViewById(R.id.redLedInformation);
-        TextView yellowText = findViewById(R.id.yellowLedInformation);
-        TextView greenText = findViewById(R.id.greenLedInformation);
-        TextView blueText = findViewById(R.id.blueLedInformation);
+    public void updateLEDStates(String message) {
 
         try {
             JSONObject jsonData = new JSONObject(message);
             if (jsonData.getBoolean("RedLED")){
                 redText.setText("on");
-                redText.setBackgroundColor(0xFA0000);
+                redText.setBackgroundResource(R.color.redLED);
             } else {
                 redText.setText("off");
-                redText.setBackgroundColor(0x4C4C4C);
+                redText.setBackgroundResource(R.color.darkerGray);
             }
 
             if (jsonData.getBoolean("YellowLED")){
                 yellowText.setText("on");
-                yellowText.setBackgroundColor(0xFFE600);
+                yellowText.setBackgroundResource(R.color.yellowLED);
             } else {
                 yellowText.setText("off");
-                yellowText.setBackgroundColor(0xA1A1A1);
+                yellowText.setBackgroundResource(R.color.lightGray);
             }
 
             if (jsonData.getBoolean("GreenLED")){
                 greenText.setText("on");
-                greenText.setBackgroundColor(0x3EFF09);
+                greenText.setBackgroundResource(R.color.greenLED);
             } else {
                 greenText.setText("off");
-                greenText.setBackgroundColor(0xA1A1A1);
+                greenText.setBackgroundResource(R.color.lightGray);
             }
 
             if (jsonData.getBoolean("BlueLED")){

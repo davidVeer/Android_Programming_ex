@@ -1,11 +1,9 @@
-package com.example.oldphoneapp.MQTT;
+package com.example.AndroidProgrammeren.MQTT;
 import android.content.Context;
 import android.util.Log;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.oldphoneapp.MainActivity;
-import com.example.oldphoneapp.R;
+import com.example.AndroidProgrammeren.MainActivity;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
@@ -18,7 +16,6 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 
 import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.UUID;
 
 public class MQTT_Connections {
@@ -62,7 +59,7 @@ public class MQTT_Connections {
                 Log.d("subscription", message.toString());
                 Toast toast = Toast.makeText(CONTEXT, "Message arrived : " + message, Toast.LENGTH_SHORT);
                 toast.show();
-                mainActivity.updateTextBox(message.toString());
+                mainActivity.updateLEDStates(message.toString());
             }
 
             @Override
@@ -159,23 +156,18 @@ public class MQTT_Connections {
     public String getTopic(Topic topic){
         switch (topic){
             case BUTTON_1:
-                return "Software/button/1";
+                return "Software/Button/Red";
             case BUTTON_2:
-                return "Software/button/2";
+                return "Software/Button/Yellow";
             case BUTTON_3:
-                return "Software/button/3";
+                return "Software/Button/Green";
             case BUTTON_4:
-                return "Software/button/4";
+                return "Software/Button/Blue";
             case HARDWARE_LEDS:
                 return "Hardware/LED/all";
             default:
                 return "";
 
         }
-    }
-
-
-    public MqttAndroidClient getMqttAndroidClient() {
-        return this.mqttAndroidClient;
     }
 }

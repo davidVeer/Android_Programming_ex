@@ -1,4 +1,4 @@
-package com.example.oldphoneapp.MQTT;
+package com.example.AndroidProgrammeren.MQTT;
 
 public enum Topic {
     BUTTON_1,

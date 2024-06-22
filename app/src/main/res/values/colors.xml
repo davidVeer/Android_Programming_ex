@@ -2,4 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name= "redLED">#FA0000</color>
+    <color name= "yellowLED">#FFE600</color>
+    <color name= "greenLED">#3EFF09</color>
+    <color name= "blueLED">#00C4FF</color>
+    <color name= "darkerGray">#4C4C4C</color>
+    <color name="lightGray">#A1A1A1</color>
 </resources>
