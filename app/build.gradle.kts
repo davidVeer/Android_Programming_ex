@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.oldphoneapp"
+    namespace = "com.example.AndroidProgrammeren"
     compileSdk = 34
 
     buildFeatures{
@@ -14,7 +14,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.oldphoneapp"
+        applicationId = "com.example.AndroidProgrammeren"
         minSdk = 31
         targetSdk = 34
         versionCode = 1

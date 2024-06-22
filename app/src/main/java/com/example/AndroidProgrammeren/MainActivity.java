@@ -10,8 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.AndroidProgrammeren.MQTT.MQTT_Connections;
 import com.example.AndroidProgrammeren.MQTT.Topic;
-import com.example.oldphoneapp.R;
-import com.example.oldphoneapp.databinding.ActivityMainBinding;
+import com.example.AndroidProgrammeren.databinding.ActivityMainBinding;
 
 import org.json.JSONException;
 import org.json.JSONObject;
