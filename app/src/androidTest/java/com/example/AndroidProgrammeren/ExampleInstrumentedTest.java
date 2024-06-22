@@ -1,4 +1,4 @@
-package com.example.oldphoneapp;
+package com.example.AndroidProgrammeren;
 
 import android.content.Context;
 
