@@ -1,11 +1,14 @@
 package com.example.oldphoneapp.MQTT;
 import android.content.Context;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.oldphoneapp.MainActivity;
+import com.example.oldphoneapp.R;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
+import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
@@ -15,6 +18,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 import java.util.UUID;
 
 public class MQTT_Connections {
@@ -28,16 +32,18 @@ public class MQTT_Connections {
                                             UUID.randomUUID().toString();
     private static final int QUALITY_OF_SERVICE = 0;
 
+    //application data
+    MainActivity mainActivity;
+
     //miscellaneous setup
     private final String LOGTAG  = MainActivity.class.getName();
     private final Context CONTEXT;
     private MqttAndroidClient mqttAndroidClient;
 
-    public MQTT_Connections(Context Context) {
+    public MQTT_Connections(Context Context, MainActivity mainActivity) {
         this.CONTEXT = Context;
         mqttAndroidClient = new MqttAndroidClient(CONTEXT, MQTT_URL, MQTT_CLIENT_ID);
-
-
+        this.mainActivity = mainActivity;
     }
 
 
@@ -53,8 +59,10 @@ public class MQTT_Connections {
 
             @Override
             public void messageArrived(String topic, MqttMessage message) throws Exception {
-                Toast toast = Toast.makeText(CONTEXT, "Message arrived : " + message, Toast.LENGTH_LONG);
+                Log.d("subscription", message.toString());
+                Toast toast = Toast.makeText(CONTEXT, "Message arrived : " + message, Toast.LENGTH_SHORT);
                 toast.show();
+                mainActivity.updateTextBox(message.toString());
             }
 
             @Override
@@ -74,14 +82,30 @@ public class MQTT_Connections {
         connectionOptions.setConnectionTimeout(60);
         connectionOptions.setKeepAliveInterval(30);
 
+
         try{
             IMqttToken token = mqttAndroidClient.connect(connectionOptions);
-            token.setActionCallback(new MQTT_ActionListener(
-                    "MQTT client is now connected to MQTT broker",
-                    "MQTT client failed to connect to MQTT broker",
-                    LOGTAG,
-                    CONTEXT
-                    ));
+            token.setActionCallback(new IMqttActionListener() {
+                @Override
+                public void onSuccess(IMqttToken asyncActionToken) {
+                    Log.e(LOGTAG, "MQTT client is now connected to MQTT broker");
+                    Toast toast = Toast.makeText(CONTEXT,
+                            "MQTT client is now connected to MQTT broker", Toast.LENGTH_LONG);
+                    toast.show();
+
+                    subscribeToTopic(getTopic(Topic.HARDWARE_LEDS));
+                }
+
+                @Override
+                public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                    Log.e(LOGTAG, "MQTT client failed to connect to MQTT broker");
+                    Toast toast = Toast.makeText(CONTEXT,
+                            "MQTT client failed to connect to MQTT broker", Toast.LENGTH_SHORT);
+                    toast.show();
+
+                    connectToBroker();
+                }
+            });
         } catch (MqttException ex) {
             Log.e(MainActivity.class.getName(), "MQTT exception while connecting to MQTT broker, reason: " +
                     ex.getReasonCode() + ", msg: " + ex.getMessage() + ", cause: " + ex.getCause());
@@ -142,14 +166,8 @@ public class MQTT_Connections {
                 return "Software/button/3";
             case BUTTON_4:
                 return "Software/button/4";
-            case HARDWARE_LED_RED:
-                return "Hardware/LED/Red";
-            case HARDWARE_LED_BLUE:
-                return "Hardware/LED/Yellow";
-            case HARDWARE_LED_GREEN:
-                return "Hardware/LED/Green";
-            case HARDWARE_LED_YELLOW:
-                return "Hardware/LED/Blue";
+            case HARDWARE_LEDS:
+                return "Hardware/LED/all";
             default:
                 return "";
 
