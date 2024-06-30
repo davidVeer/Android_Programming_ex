@@ -33,7 +33,7 @@ public class MQTT_Connections {
     MainActivity mainActivity;
 
     //miscellaneous setup
-    private final String LOGTAG  = MainActivity.class.getName();
+    private final String LOGTAG  = "MQTT_Connections";
     private final Context CONTEXT;
     private MqttAndroidClient mqttAndroidClient;
 
@@ -49,6 +49,7 @@ public class MQTT_Connections {
         mqttAndroidClient.setCallback(new MqttCallback() {
             @Override
             public void connectionLost(Throwable cause) {
+                Log.d(LOGTAG, "connection with broker was was lost due to: " + cause.getLocalizedMessage());
                 Toast toast = Toast.makeText(CONTEXT, "Connection with Broker lost ; cause : " +
                         cause.getLocalizedMessage(), Toast.LENGTH_SHORT);
                 toast.show();
@@ -85,7 +86,7 @@ public class MQTT_Connections {
             token.setActionCallback(new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
-                    Log.e(LOGTAG, "MQTT client is now connected to MQTT broker");
+                    Log.i(LOGTAG, "MQTT client is now connected to MQTT broker");
                     Toast toast = Toast.makeText(CONTEXT,
                             "MQTT client is now connected to MQTT broker", Toast.LENGTH_LONG);
                     toast.show();
@@ -130,26 +131,10 @@ public class MQTT_Connections {
             token.setActionCallback(new MQTT_ActionListener(
                     "MQTT client subscribed to: " + topic,
                     "MQTT client failed to subscribe to: " + topic,
-                    LOGTAG,
                     CONTEXT
             ));
         } catch (MqttException e) {
             throw new RuntimeException(e);
-        }
-    }
-
-    public void DisconnectFromBroker(){
-        try{
-            IMqttToken token = mqttAndroidClient.disconnect();
-            token.setActionCallback(new MQTT_ActionListener(
-                    "MQTT client is now disconnected from MQTT broker",
-                    "MQTT client failed to disconnect from MQTT broker",
-                    LOGTAG,
-                    CONTEXT
-            ));
-        } catch (MqttException ex) {
-            Log.e(MainActivity.class.getName(), "MQTT exception while disconnecting from MQTT broker, reason: " +
-                    ex.getReasonCode() + ", msg: " + ex.getMessage() + ", cause: " + ex.getCause());
         }
     }
 

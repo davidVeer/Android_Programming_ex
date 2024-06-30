@@ -15,16 +15,16 @@ public class MQTT_ActionListener implements IMqttActionListener {
     private final String LOGTAG;
     private final Context CONTEXT;
 
-    public MQTT_ActionListener(String onSuccessMsg, String onFailureMsg, String logtag, Context context) {
+    public MQTT_ActionListener(String onSuccessMsg, String onFailureMsg, Context context) {
         this.ON_SUCCESS_MSG = onSuccessMsg;
         this.ON_FAILURE_MSG = onFailureMsg;
-        this.LOGTAG = logtag;
+        this.LOGTAG = "MQTT_ActionListener";
         this.CONTEXT = context;
     }
 
     @Override
     public void onSuccess(IMqttToken asyncActionToken) {
-        Log.e(LOGTAG, ON_SUCCESS_MSG);
+        Log.d(LOGTAG, ON_SUCCESS_MSG);
         Toast toast = Toast.makeText(CONTEXT,
                 ON_SUCCESS_MSG, Toast.LENGTH_LONG);
         toast.show();

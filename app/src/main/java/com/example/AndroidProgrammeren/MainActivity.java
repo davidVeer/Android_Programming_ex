@@ -12,11 +12,6 @@ import com.example.AndroidProgrammeren.MQTT.MQTT_Connections;
 import com.example.AndroidProgrammeren.MQTT.Topic;
 import com.example.AndroidProgrammeren.databinding.ActivityMainBinding;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.Objects;
-
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
@@ -49,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         mqttConnections.setCallback();
     }
 
-    public void initialiseRedButton(){
+    public void initialiseRedButton() {
         View publishButton = findViewById(R.id.redLedButton);
         publishButton.setOnClickListener(v -> {
             String topic = mqttConnections.getTopic(Topic.BUTTON_1);
@@ -57,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
         });
     }
-    public void initialiseYellowButton(){
+
+    public void initialiseYellowButton() {
         View publishButton = findViewById(R.id.yellowLedButton);
         publishButton.setOnClickListener(v -> {
             String topic = mqttConnections.getTopic(Topic.BUTTON_2);
@@ -65,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
 
         });
     }
-    public void initialiseGreenButton(){
+
+    public void initialiseGreenButton() {
         View publishButton = findViewById(R.id.greenLedButton);
         publishButton.setOnClickListener(v -> {
             String topic = mqttConnections.getTopic(Topic.BUTTON_3);
@@ -73,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
         });
     }
-    public void initialiseBlueButton(){
+
+    public void initialiseBlueButton() {
         View publishButton = findViewById(R.id.blueLedButton);
         publishButton.setOnClickListener(v -> {
             String topic = mqttConnections.getTopic(Topic.BUTTON_4);
