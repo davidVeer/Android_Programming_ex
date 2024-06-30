@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="off">uit</string>
+    <string name="on">aan</string>
+
+
+    <string name="redIndicator">"Rode LED: "</string>
+    <string name="yellowIndicator">Gele LED:</string>
+    <string name="greenIndicator">Groene LED:</string>
+    <string name="blueIndicator">"Blauwe LED: "</string>
+    <string name="unknownInformation">geen informatie</string>
+
+    <string name="toggleAll">Schakel : Allemaal</string>
+    <string name="toggleRed">Schakel : Rood</string>
+    <string name="toggleYellow">Schakel : Geel</string>
+    <string name="toggleGreen">Schakel : Groen</string>
+    <string name="toggleBlue">Schakel : Blauw</string>
+</resources>
