@@ -91,39 +91,4 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void updateLEDText(boolean red, boolean yellow, boolean green, boolean blue) {
-
-        if (red) {
-            Log.i("red led", "turned Light on");
-            redText.setText(R.string.on);
-        } else {
-            Log.i("red led", "turned Light off");
-            redText.setText(R.string.off);
-        }
-
-        if (yellow) {
-            Log.i("yellow led", "turned Light on");
-            yellowText.setText(R.string.on);
-        } else {
-            Log.i("yellow led", "turned Light off");
-            yellowText.setText(R.string.off);
-        }
-
-        if (green) {
-            Log.i("green led", "turned Light on");
-            greenText.setText(R.string.on);
-        } else {
-            Log.i("green led", "turned Light off");
-            greenText.setText(R.string.off);
-        }
-
-        if (blue) {
-            Log.i("blue led", "turned Light on");
-            blueText.setText(R.string.on);
-        } else {
-            Log.i("blue led", "turned Light off");
-            blueText.setText(R.string.off);
-        }
-
-    }
 }
