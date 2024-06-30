@@ -39,6 +39,7 @@ const char* SOFTWARE_RED_TOPIC = "Software/Button/Red";
 const char* SOFTWARE_YELLOW_TOPIC = "Software/Button/Yellow";
 const char* SOFTWARE_GREEN_TOPIC = "Software/Button/Green";
 const char* SOFTWARE_BLUE_TOPIC = "Software/Button/Blue";
+const char* SOFTWARE_STARTUP_TOPIC = "Software/Startup";
 
 void callback(char* topic, byte* payload, unsigned int length);
 
@@ -112,6 +113,7 @@ void reconnect(){
       mqttClient.subscribe(SOFTWARE_YELLOW_TOPIC);
       mqttClient.subscribe(SOFTWARE_GREEN_TOPIC);
       mqttClient.subscribe(SOFTWARE_BLUE_TOPIC);
+      mqttClient.subscribe(SOFTWARE_STARTUP_TOPIC);
       
     }else{
       Serial.print("failed, rc=");
@@ -172,6 +174,7 @@ void callback(char* topic, byte* payload, unsigned int length){
   String topicYellow = "Software/Button/Yellow";
   String topicGreen = "Software/Button/Green";
   String topicBlue = "Software/Button/Blue";
+  String topicStartup = "Software/Startup";
 
   if (String(topic) == topicRed){
     switchLights(RED);
@@ -184,6 +187,18 @@ void callback(char* topic, byte* payload, unsigned int length){
   }
   else if (String(topic) == topicBlue){
     switchLights(BLUE);
+  }
+  else if (String(topic) == topicStartup){
+    redLedOn = true;
+    yellowLedOn = true;
+    greenLedOn = true;
+    blueLedOn = true;
+
+
+    digitalWrite(RED_LED_PIN, redLedOn);
+    digitalWrite(YELLOW_LED_PIN, yellowLedOn);
+    digitalWrite(GREEN_LED_PIN, greenLedOn);
+    digitalWrite(BLUE_LED_PIN, blueLedOn);
   }
   else{
     Serial.println("unknown source");

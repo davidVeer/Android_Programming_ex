@@ -101,6 +101,7 @@ public class MQTT_Connections {
                     toast.show();
 
                     subscribeToTopic(getTopic(Topic.HARDWARE_LEDS));
+                    publishMessage(getTopic(Topic.INITIAL), "connected to system");
                 }
 
                 @Override
@@ -157,6 +158,8 @@ public class MQTT_Connections {
                 return "Software/Button/Green";
             case BUTTON_4:
                 return "Software/Button/Blue";
+            case INITIAL:
+                return "Software/Startup";
             case HARDWARE_LEDS:
                 return "Hardware/LED/all";
             default:
