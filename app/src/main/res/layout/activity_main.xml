@@ -37,7 +37,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="32dp"
-                            android:text="Red LED: "
+                            android:text="@string/redIndicator"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -47,7 +47,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="32dp"
-                            android:text="Yellow LED:"
+                            android:text="@string/yellowIndicator"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/Red_Led_indicator"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -57,7 +57,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="32dp"
-                            android:text="Green LED:"
+                            android:text="@string/greenIndicator"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/Yellow_Led_Indicator"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -67,7 +67,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="32dp"
-                            android:text="Blue LED: "
+                            android:text="@string/blueIndicator"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/Green_Led_Indicator"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -80,7 +80,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="32dp"
                         android:layout_marginEnd="0dp"
-                        android:layout_marginRight="411dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent">
 
@@ -91,9 +90,9 @@
                             android:layout_marginStart="32dp"
                             android:background="#4C4C4C"
                             android:backgroundTint="#4C4C4C"
-                            android:text="Information Unknown"
+                            android:text="@string/unknownInformation"
                             android:textColor="#FFFFFF"
-                            android:textSize="10sp"
+                            android:textSize="12sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -105,7 +104,7 @@
                             android:layout_marginStart="32dp"
                             android:background="#4C4C4C"
                             android:backgroundTint="#4C4C4C"
-                            android:text="Information Unknown"
+                            android:text="@string/unknownInformation"
                             android:textColor="#FFFFFF"
                             android:textSize="12sp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -119,7 +118,7 @@
                             android:layout_marginStart="32dp"
                             android:background="#4C4C4C"
                             android:backgroundTint="#4C4C4C"
-                            android:text="Information Unknown"
+                            android:text="@string/unknownInformation"
                             android:textColor="#FFFFFF"
                             android:textSize="12sp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -133,9 +132,9 @@
                             android:layout_marginStart="32dp"
                             android:background="#4C4C4C"
                             android:backgroundTint="#4C4C4C"
-                            android:text="Information Unknown"
+                            android:text="@string/unknownInformation"
                             android:textColor="#FFFFFF"
-                            android:textSize="10sp"
+                            android:textSize="12sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/greenLedInformation"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -147,7 +146,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/buttonConstraints"
                 android:layout_width="match_parent"
-                android:layout_height="441dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="32dp">
 
                 <Button
@@ -157,7 +156,7 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginBottom="16dp"
                     android:backgroundTint="#6E6E6E"
-                    android:text="toggle all"
+                    android:text="@string/toggleAll"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -167,7 +166,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:backgroundTint="#F81010"
-                    android:text="toggle red"
+                    android:text="@string/toggleRed"
+                    android:textColor="#000000"
                     app:layout_constraintBottom_toTopOf="@+id/yellowLedButton"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -177,7 +177,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:backgroundTint="#FFE600"
-                    android:text="toggle yellow"
+                    android:text="@string/toggleYellow"
                     android:textColor="#000000"
                     app:layout_constraintBottom_toTopOf="@+id/greenLedButton"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -188,7 +188,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:backgroundTint="#3EFF09"
-                    android:text="toggle green"
+                    android:text="@string/toggleGreen"
                     android:textColor="#000000"
                     app:layout_constraintBottom_toTopOf="@+id/blueLedButton"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -199,7 +199,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:backgroundTint="#0037FF"
-                    android:text="toggle blue"
+                    android:text="@string/toggleBlue"
                     app:layout_constraintBottom_toTopOf="@+id/allLedButton"
                     app:layout_constraintStart_toStartOf="parent" />
 

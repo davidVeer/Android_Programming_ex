@@ -2,10 +2,19 @@
     <string name="app_name">Android programming</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="redInformation"/>
-    <string name="yellowInformation" />
-    <string name="greenInformation" />
-    <string name="blueInformation" />
     <string name="off">off</string>
     <string name="on">on</string>
+
+
+    <string name="redIndicator">"Red LED: "</string>
+    <string name="yellowIndicator">Yellow LED:</string>
+    <string name="greenIndicator">Green LED:</string>
+    <string name="blueIndicator">"Blue LED: "</string>
+    <string name="unknownInformation">information is unknown</string>
+
+    <string name="toggleAll">Toggle : All</string>
+    <string name="toggleRed">Toggle : Red</string>
+    <string name="toggleYellow">Toggle : Yellow</string>
+    <string name="toggleGreen">Toggle : Green</string>
+    <string name="toggleBlue">Toggle : Blue</string>
 </resources>
