@@ -1,6 +1,5 @@
 package com.example.AndroidProgrammeren;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -43,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         mqttConnections = new MQTT_Connections(getApplicationContext(), this);
         mqttConnections.connectToBroker();
         mqttConnections.setCallback();
+
     }
 
     public void initialiseRedButton() {
@@ -81,40 +81,38 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
-    @SuppressLint("UseCompatLoadingForDrawables")
     public void updateLEDText(boolean red, boolean yellow, boolean green, boolean blue) {
 
         if (red) {
             Log.i("red led", "turned Light on");
-            redText.setText("on");
+            redText.setText(R.string.on);
         } else {
             Log.i("red led", "turned Light off");
-            redText.setText("off");
+            redText.setText(R.string.off);
         }
 
         if (yellow) {
             Log.i("yellow led", "turned Light on");
-            yellowText.setText("on");
+            yellowText.setText(R.string.on);
         } else {
             Log.i("yellow led", "turned Light off");
-            yellowText.setText("off");
+            yellowText.setText(R.string.off);
         }
 
         if (green) {
             Log.i("green led", "turned Light on");
-            greenText.setText("on");
+            greenText.setText(R.string.on);
         } else {
             Log.i("green led", "turned Light off");
-            greenText.setText("off");
+            greenText.setText(R.string.off);
         }
 
         if (blue) {
             Log.i("blue led", "turned Light on");
-            blueText.setText("on");
+            blueText.setText(R.string.on);
         } else {
             Log.i("blue led", "turned Light off");
-            blueText.setText("off");
+            blueText.setText(R.string.off);
         }
 
     }
