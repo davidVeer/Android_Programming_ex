@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         initialiseYellowButton();
         initialiseGreenButton();
         initialiseBlueButton();
+        initialiseAllButton();
 
         redText = findViewById(R.id.redLedInformation);
         yellowText = findViewById(R.id.yellowLedInformation);
@@ -77,6 +78,15 @@ public class MainActivity extends AppCompatActivity {
         publishButton.setOnClickListener(v -> {
             String topic = mqttConnections.getTopic(Topic.BUTTON_4);
             mqttConnections.publishMessage(topic, "blue:toggle");
+
+        });
+    }
+
+    public void initialiseAllButton(){
+        View publishButton = findViewById(R.id.allLedButton);
+        publishButton.setOnClickListener(v -> {
+            String topic = mqttConnections.getTopic(Topic.BUTTON_ALL);
+            mqttConnections.publishMessage(topic, "all:toggle");
 
         });
     }

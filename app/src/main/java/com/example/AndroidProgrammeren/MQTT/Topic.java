@@ -5,6 +5,6 @@ public enum Topic {
     BUTTON_2,
     BUTTON_3,
     BUTTON_4,
-    INITIAL,
+    BUTTON_ALL,
     HARDWARE_LEDS
 }
