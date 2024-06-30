@@ -1,5 +1,6 @@
 package com.example.AndroidProgrammeren;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -81,45 +82,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void updateLEDStates(String message) {
+    @SuppressLint("UseCompatLoadingForDrawables")
+    public void updateLEDText(boolean red, boolean yellow, boolean green, boolean blue) {
 
-        try {
-            JSONObject jsonData = new JSONObject(message);
-            if (jsonData.getBoolean("RedLED")){
-                redText.setText("on");
-                redText.setBackgroundResource(R.color.redLED);
-            } else {
-                redText.setText("off");
-                redText.setBackgroundResource(R.color.darkerGray);
-            }
-
-            if (jsonData.getBoolean("YellowLED")){
-                yellowText.setText("on");
-                yellowText.setBackgroundResource(R.color.yellowLED);
-            } else {
-                yellowText.setText("off");
-                yellowText.setBackgroundResource(R.color.lightGray);
-            }
-
-            if (jsonData.getBoolean("GreenLED")){
-                greenText.setText("on");
-                greenText.setBackgroundResource(R.color.greenLED);
-            } else {
-                greenText.setText("off");
-                greenText.setBackgroundResource(R.color.lightGray);
-            }
-
-            if (jsonData.getBoolean("BlueLED")){
-                blueText.setText("on");
-                blueText.setBackgroundColor(0x00C4FF);
-            } else {
-                blueText.setText("off");
-                blueText.setBackgroundColor(0x4C4C4C);
-            }
-
-
-        } catch (JSONException e) {
-            Log.d("Json", Objects.requireNonNull(e.getMessage()));
+        if (red) {
+            Log.i("red led", "turned Light on");
+            redText.setText("on");
+        } else {
+            Log.i("red led", "turned Light off");
+            redText.setText("off");
         }
+
+        if (yellow) {
+            Log.i("yellow led", "turned Light on");
+            yellowText.setText("on");
+        } else {
+            Log.i("yellow led", "turned Light off");
+            yellowText.setText("off");
+        }
+
+        if (green) {
+            Log.i("green led", "turned Light on");
+            greenText.setText("on");
+        } else {
+            Log.i("green led", "turned Light off");
+            greenText.setText("off");
+        }
+
+        if (blue) {
+            Log.i("blue led", "turned Light on");
+            blueText.setText("on");
+        } else {
+            Log.i("blue led", "turned Light off");
+            blueText.setText("off");
+        }
+
     }
 }

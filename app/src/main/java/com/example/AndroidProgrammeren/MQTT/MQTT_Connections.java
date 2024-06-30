@@ -3,6 +3,7 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.AndroidProgrammeren.LedData;
 import com.example.AndroidProgrammeren.MainActivity;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
@@ -36,11 +37,13 @@ public class MQTT_Connections {
     private final String LOGTAG  = "MQTT_Connections";
     private final Context CONTEXT;
     private MqttAndroidClient mqttAndroidClient;
+    private LedData ledData;
 
     public MQTT_Connections(Context Context, MainActivity mainActivity) {
         this.CONTEXT = Context;
         mqttAndroidClient = new MqttAndroidClient(CONTEXT, MQTT_URL, MQTT_CLIENT_ID);
         this.mainActivity = mainActivity;
+        ledData = new LedData();
     }
 
 
@@ -60,7 +63,13 @@ public class MQTT_Connections {
                 Log.d("subscription", message.toString());
                 Toast toast = Toast.makeText(CONTEXT, "Message arrived : " + message, Toast.LENGTH_SHORT);
                 toast.show();
-                mainActivity.updateLEDStates(message.toString());
+                ledData.updateData(message.toString());
+                mainActivity.updateLEDText(
+                        ledData.isRedLED(),
+                        ledData.isYellowLED(),
+                        ledData.isGreenLED(),
+                        ledData.isBlueLED()
+                );
             }
 
             @Override
